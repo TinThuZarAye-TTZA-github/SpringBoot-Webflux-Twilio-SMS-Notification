@@ -19,7 +19,7 @@ public class TwilioOtpHandler {
 
     public Mono<ServerResponse> sendOTP(ServerRequest request) {
         return request.bodyToMono(PasswordResetRequestDto.class)
-                .flatMap(dto -> twilioOneTimePassword.sendOTPForPaswwordReset(dto))
+                .flatMap(dto -> twilioOneTimePassword.sendOTPForPasswordReset(dto))
 
                 .flatMap(dto -> ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromValue(dto)));
     }
