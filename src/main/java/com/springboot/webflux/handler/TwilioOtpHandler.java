@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
+
 public class TwilioOtpHandler {
 
     @Autowired
@@ -18,7 +19,8 @@ public class TwilioOtpHandler {
 
     public Mono<ServerResponse> sendOTP(ServerRequest request) {
         return request.bodyToMono(PasswordResetRequestDto.class)
-                .flatMap(dto -> twilioOneTimePassword.sendOTPForPasswordReset(dto))
+                .flatMap(dto -> twilioOneTimePassword.sendOTPForPaswwordReset(dto))
+
                 .flatMap(dto -> ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromValue(dto)));
     }
 
