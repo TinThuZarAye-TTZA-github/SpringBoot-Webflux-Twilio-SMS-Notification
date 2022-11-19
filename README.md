@@ -14,7 +14,8 @@ JSON :
 {  
 "phoneNumber" : "+1 4155555555",
 "username" : "username"
-} 
+}  
+
 POST : http://localhost:8080/router/validateOTP  
 JSON  : 
 {
