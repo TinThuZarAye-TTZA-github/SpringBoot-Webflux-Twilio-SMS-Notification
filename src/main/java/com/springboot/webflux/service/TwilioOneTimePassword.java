@@ -3,7 +3,7 @@ package com.springboot.webflux.service;
 import com.springboot.webflux.config.TwilioConfig;
 import com.springboot.webflux.dto.OtpResponse;
 import com.springboot.webflux.dto.PasswordResetRequestDto;
-import com.springboot.webflux.dto.PasswordRestResponseDto;
+import com.springboot.webflux.dto.PasswordResetResponseDto;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class TwilioOneTimePassword {
 
     Map<String,String> map = new HashMap<>();
 
-    public Mono<PasswordRestResponseDto> sendOTPForPaswwordReset(PasswordResetRequestDto passwordResetRequestDto) {
-        PasswordRestResponseDto passwordRestResponseDto=null;
+    public Mono<PasswordResetResponseDto> sendOTPForPasswordReset(PasswordResetRequestDto passwordResetRequestDto) {
+        PasswordResetResponseDto passwordRestResponseDto=null;
         try{
             PhoneNumber to = new PhoneNumber(passwordResetRequestDto.getPhoneNumber());
             PhoneNumber from = new PhoneNumber(twilioConfig.getTrial_number());
@@ -34,9 +34,9 @@ public class TwilioOneTimePassword {
 
             map.put(passwordResetRequestDto.getUsername(),oneTimePassword);
 
-            passwordRestResponseDto = new PasswordRestResponseDto(OtpResponse.DELIVERED,oneTimePasswordMessage);
+            passwordRestResponseDto = new PasswordResetResponseDto(OtpResponse.DELIVERED,oneTimePasswordMessage);
         }catch (Exception ex) {
-            passwordRestResponseDto = new PasswordRestResponseDto(OtpResponse.FAILED,ex.getMessage());
+            passwordRestResponseDto = new PasswordResetResponseDto(OtpResponse.FAILED,"Error Message");
         }
         return Mono.just(passwordRestResponseDto);
 

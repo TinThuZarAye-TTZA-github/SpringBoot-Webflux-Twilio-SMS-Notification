@@ -1,6 +1,6 @@
 package com.springboot.webflux.router;
 
-import com.springboot.webflux.handler.TwilioOptHandler;
+import com.springboot.webflux.handler.TwilioOtpHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class TwilioRouter {
 
     @Autowired
-    private TwilioOptHandler handler;
+    private TwilioOtpHandler handler;
 
 
     @Bean
